@@ -48,6 +48,10 @@ app.use(express.json({ limit: config.bodyLimit }))
 
 const gate = new ConcurrencyGate(config.maxConcurrency)
 
+app.get('/health', (req, res) => {
+  return res.status(200).json({ ok: true })
+})
+
 app.post('/run', async (req, res) => {
   const release = gate.tryAcquire()
   if (!release) {

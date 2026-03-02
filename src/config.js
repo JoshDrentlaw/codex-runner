@@ -29,7 +29,7 @@ function toPositiveInt(value, fallback) {
 const config = {
   port: toPositiveInt(process.env.PORT, 8787),
   // Always bind to loopback for safety and ignore external HOST overrides.
-  host: '127.0.0.1',
+  host: process.env.HOST || '0.0.0.0',
   token: process.env.CODEX_TOKEN || '',
   allowedRoots: parseAllowedRoots(process.env.ALLOWED_REPO_ROOTS),
   // Optional extra args to pass to `codex exec` (space-separated).
